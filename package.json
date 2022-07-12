@@ -1,9 +1,11 @@
 {
   "name": "booksearch",
   "version": "1.0.0",
+  "main": "index.html",
   "author": "Victor Chan",
   "license": "MIT",
   "private": false,
+  "targets": {"main": false },
   "dependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
