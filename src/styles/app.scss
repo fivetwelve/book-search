@@ -30,6 +30,9 @@ $breakpoint-desktop: 1024px;
 
 .search-results-container {
   padding: 40px;
+  h3.no-results {
+    text-align: center;
+  }
 }
 
 .search-status {

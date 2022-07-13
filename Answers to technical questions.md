@@ -6,7 +6,7 @@
 
     I would try to understand the data better to improve the fidelity of the results. There is a lot of mal-formed data and fields that may or may not be consistent requiring more error-testing.
     
-    I would add some lazy-loading and toggling between ascending and descending sorting. I made some assumptions along the way due to the inconsistency of the data. For example, due to the large number of publish_dates (and different date formats),
+    I would add some lazy-loading. I also made some assumptions along the way due to the inconsistency of the data. For example, due to the large number of publish_dates (and different date formats) which could impact the sorting conditions.
 
     I would add error-handling for invalid response and empty input (I currently just check there is some input before allowing search to execute).
     

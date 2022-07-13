@@ -9,6 +9,8 @@ const App = () => {
   const [busy, setBusy] = useState(false);
   const [results, setResults] = useState(null);
   const [displayResults, setDisplayResults] = useState(null);
+  const [sortType, setSortType] = useState(null);
+  const [sortDirection, setSortDirection] = useState(null);
   const inputBook = useRef(null);
   const alphaButton = useRef(null);
   const dateButton = useRef(null);
@@ -16,6 +18,8 @@ const App = () => {
   function handleClick() {
     if (inputBook.current.value !== '') {
       setDisplayResults(null);
+      setSortType(null);
+      setSortDirection(null);
       setBusy(true);
       search(book);
     }
@@ -45,16 +49,46 @@ const App = () => {
   function sortAlpha(evt) {
     dateButton.current.classList.remove('selected');
     evt.target.classList.add('selected');
-    const arr = [].concat(results).sort((a, b) => (a.title > b.title ? 1 : -1));
+    let arr;
+    if (sortType !== 'ALPHA') {
+      setSortType('ALPHA');
+      setSortDirection('ASC');
+      arr = [].concat(results).sort((a, b) => (a.title > b.title ? 1 : -1));
+    } else {
+      if (sortDirection === 'ASC') {
+        arr = [].concat(results).sort((a, b) => (a.title < b.title ? 1 : -1));
+        setSortDirection('DESC');
+      } else {
+        arr = [].concat(results).sort((a, b) => (a.title > b.title ? 1 : -1));
+        setSortDirection('ASC');
+      }
+    }
     setDisplayResults(arr);
   }
 
   function sortDate(evt) {
     alphaButton.current.classList.remove('selected');
     evt.target.classList.add('selected');
-    const arr = []
-      .concat(results)
-      .sort((a, b) => (a.publish_year < b.publish_year ? 1 : -1));
+    let arr;
+    if (sortType !== 'NUM') {
+      setSortType('NUM');
+      setSortDirection('ASC');
+      arr = []
+        .concat(results)
+        .sort((a, b) => (a.publish_year > b.publish_year ? 1 : -1));
+    } else {
+      if (sortDirection === 'ASC') {
+        arr = []
+          .concat(results)
+          .sort((a, b) => (a.publish_year < b.publish_year ? 1 : -1));
+        setSortDirection('DESC');
+      } else {
+        arr = []
+          .concat(results)
+          .sort((a, b) => (a.publish_year > b.publish_year ? 1 : -1));
+        setSortDirection('ASC');
+      }
+    }
     setDisplayResults(arr);
   }
 
@@ -104,6 +138,9 @@ const App = () => {
             <img src={spinner} alt="Please wait for results." />
           </div>
         )}
+        {!busy && (!displayResults || displayResults?.length === 0) && (
+          <h3 className="no-results">Sorry, no results found.</h3>
+        )}
         {displayResults?.length > 0 && (
           <>
             {/* <div>Number of results: {displayResults.numFound}</div> */}
@@ -128,6 +165,12 @@ const App = () => {
                   Sort by Date
                 </button>
               </label>
+              <p>
+                {(sortDirection === 'ASC' && <span>&#11014; Ascending</span>) ||
+                  (sortDirection === 'DESC' && (
+                    <span>&#11015; Descending</span>
+                  ))}
+              </p>
             </div>
             {displayResults.map((doc, idx) => {
               const isbn = (Array.isArray(doc.isbn) && doc.isbn[0]) || doc.isbn;
