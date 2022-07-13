@@ -1,3 +1,7 @@
+$breakpoint-phone: 320px;
+$breakpoint-tablet: 768px;
+$breakpoint-desktop: 1024px;
+
 .search-header {
   background-color: #fbd54b;
   padding: 40px;
@@ -23,17 +27,37 @@
 
 .result {
   display: flex;
+  flex-direction: column;
   padding-bottom: 20px;
   margin-bottom: 20px;
   border-bottom: 1px solid #ccc;
+  @media (min-width: $breakpoint-tablet) {
+    flex-direction: row;
+  }
 }
+
 .book-data {
-  width: calc(100% - 200px);
+  width: 100%;
   padding-right: 20px;
+  margin-bottom: 20px;
   a {
     font-size: 1.3rem;
   }
+  @media (min-width: $breakpoint-tablet) {
+    width: calc(100% - 200px);
+  }
 }
 .book-cover {
-  width: 200px;
+  width: 100%;
+  text-align: center;
+  img {
+    transform: scale(0.8);
+    @media (min-width: $breakpoint-tablet) {
+      transform: initial;
+    }
+  }
+  @media (min-width: $breakpoint-tablet) {
+    width: 200px;
+    text-align: left;
+  }
 }

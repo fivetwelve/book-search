@@ -14,9 +14,11 @@ const App = () => {
   const dateButton = useRef(null);
 
   const handleClick = (evt) => {
-    setDisplayResults(null);
-    setBusy(true);
-    search(book);
+    if (inputBook.current.value !== '') {
+      setDisplayResults(null);
+      setBusy(true);
+      search(book);
+    }
   };
 
   async function search(req) {
@@ -73,7 +75,11 @@ const App = () => {
           </label>
 
           <label htmlFor="searchButton">
-            <button name="searchButton" onClick={(evt) => handleClick()}>
+            <button
+              data-testid="searchButton"
+              name="searchButton"
+              onClick={(evt) => handleClick()}
+            >
               Search
             </button>
           </label>
@@ -93,6 +99,7 @@ const App = () => {
               <label htmlFor="sortAlphaButton">
                 <button
                   ref={alphaButton}
+                  data-testid="sortAlphaButton"
                   name="sortAlphaButton"
                   onClick={(evt) => sortAlpha(evt)}
                 >
@@ -102,6 +109,7 @@ const App = () => {
               <label htmlFor="sortDateButton">
                 <button
                   ref={dateButton}
+                  data-testid="sortDateButton"
                   name="sortDateButton"
                   onClick={(evt) => sortDate(evt)}
                 >
@@ -136,9 +144,6 @@ const App = () => {
                       {(Array.isArray(doc.publish_year) &&
                         doc.publish_year[0]) ||
                         doc.publish_year}
-                      {/* {doc.publish_date?.reduce(
-                      (prev, current) => prev + ', ' + current,
-                    )} */}
                     </h4>
                     <a
                       href={`https://openlibrary.org/books/${editionKey}/`}
