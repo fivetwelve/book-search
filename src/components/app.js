@@ -212,6 +212,7 @@ const App = () => {
                     {doc.cover_i && (
                       <img
                         src={`https://covers.openlibrary.org/b/id/${doc.cover_i}-M.jpg`}
+                        alt={`Cover of ${doc.title}`}
                       />
                     )}
                   </div>
