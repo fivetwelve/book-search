@@ -13,13 +13,22 @@ const App = () => {
   const alphaButton = useRef(null);
   const dateButton = useRef(null);
 
-  const handleClick = (evt) => {
+  function handleClick() {
     if (inputBook.current.value !== '') {
       setDisplayResults(null);
       setBusy(true);
       search(book);
     }
-  };
+  }
+
+  function handleKeyPress(evt) {
+    const charCode = typeof evt.which === 'number' ? evt.which : evt.keyCode;
+    if (charCode === 13 && inputBook.current.value !== '') {
+      setDisplayResults(null);
+      setBusy(true);
+      search(book);
+    }
+  }
 
   async function search(req) {
     const baseUrl = 'https://openlibrary.org/search.json?title=';
@@ -62,7 +71,9 @@ const App = () => {
 
         <div className="search-input-container">
           <label htmlFor="bookName">
-            <span className="sr-only">Enter a title</span>
+            <span className="sr-only">
+              Enter a title press the Enter key to search.
+            </span>
             <input
               ref={inputBook}
               type="text"
@@ -70,6 +81,7 @@ const App = () => {
               required
               value={book}
               onChange={(evt) => setBook(evt.target.value)}
+              onKeyPress={(evt) => handleKeyPress(evt)}
               placeholder="Enter a title"
             />
           </label>
