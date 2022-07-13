@@ -138,7 +138,7 @@ const App = () => {
             <img src={spinner} alt="Please wait for results." />
           </div>
         )}
-        {!busy && (!displayResults || displayResults?.length === 0) && (
+        {!busy && displayResults?.length === 0 && (
           <h3 className="no-results">Sorry, no results found.</h3>
         )}
         {displayResults?.length > 0 && (
