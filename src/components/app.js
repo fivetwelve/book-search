@@ -54,7 +54,7 @@ const App = () => {
     evt.target.classList.add('selected');
     const arr = []
       .concat(results)
-      .sort((a, b) => (a.publish_year > b.publish_year ? 1 : -1));
+      .sort((a, b) => (a.publish_year < b.publish_year ? 1 : -1));
     setDisplayResults(arr);
   }
 
