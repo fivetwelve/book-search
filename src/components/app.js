@@ -60,7 +60,7 @@ const App = () => {
           </a>
         </span>
 
-        <div className="search-input container">
+        <div className="search-input-container">
           <label htmlFor="bookName">
             <span className="sr-only">Enter a title</span>
             <input

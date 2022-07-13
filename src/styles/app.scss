@@ -9,6 +9,24 @@ $breakpoint-desktop: 1024px;
     color: #000;
   }
 }
+.search-input-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding-top: 40px;
+  input {
+    width: 100%;
+  }
+  @media (min-width: $breakpoint-tablet) {
+    display: block;
+    // flex-direction: row;
+    input {
+      margin-right: 20px;
+      // width: 100%;
+      width: calc(100% - 200px);
+    }
+  }
+}
 
 .search-results-container {
   padding: 40px;
