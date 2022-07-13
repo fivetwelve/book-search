@@ -205,7 +205,11 @@ const App = () => {
                       target="_blank"
                       rel="noreferrer"
                     >
-                      Details
+                      Details{' '}
+                      <span className="sr-only">
+                        {' '}
+                        {`about ${doc.title} will open in a new tab or window`}.
+                      </span>
                     </a>
                   </div>
                   <div className="book-cover">
