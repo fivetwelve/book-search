@@ -1,0 +1,39 @@
+.search-header {
+  background-color: #fbd54b;
+  padding: 40px;
+  a {
+    color: #000;
+  }
+}
+
+.search-results-container {
+  padding: 40px;
+}
+
+.search-status {
+  text-align: center;
+}
+
+.sorting {
+  margin-bottom: 40px;
+  button:first-of-type {
+    margin-right: 20px;
+  }
+}
+
+.result {
+  display: flex;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #ccc;
+}
+.book-data {
+  width: calc(100% - 200px);
+  padding-right: 20px;
+  a {
+    font-size: 1.3rem;
+  }
+}
+.book-cover {
+  width: 200px;
+}
